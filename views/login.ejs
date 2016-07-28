@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Jumbotron Template for Bootstrap</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+      body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+      }
+    </style>
+</head>
+
+<body>
+
+  <% include header.ejs %>
+  <div class="container">
+    <div class="row">
+      <h1>欢迎登录!</h1>
+      <form class="col-lg-6">
+        <div class="form-group">
+          <label for="exampleInputEmail1">用户名</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入用户名" name="un"></div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">密码</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入密码" name="pw"></div>
+        <button type="submit" id="submit-btn" class="btn btn-info">登录</button>
+      </form>
+    </div>
+
+    <hr>
+
+    <footer>
+      <p>&copy; Company 2014</p>
+    </footer>
+  </div>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script>
+    $(function(){
+      $("#submit-btn").click(function(e){
+        e.preventDefault();
+        var username = $('[name="un"]').val();
+        var password = $('[name="pw"]').val();
+        if(/^\s*$/.test(username)){
+          alert('用户名不能为空!');
+          $('[name="un"]').focus();
+        }else if(/^\s*$/.test(password)){
+          alert('密码不能为空!');
+          $('[name="pw"]').focus();
+        }else{
+          $.ajax({
+            url:'/doLogin',
+            type:'post',
+            data:{"username":username,"password":password},
+            success:function(data){
+              console.log(data);
+              if(data==0){
+                console.log("用户名不存在!");
+              }else if(data==-1){
+                console.log("密码错误!");
+              }else{
+                console.log('登陆成功');
+                window.location.href = '/';
+              }
+            }
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

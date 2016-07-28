@@ -1,0 +1,20 @@
+{
+  "name": "piligogo",
+  "version": "1.0.0",
+  "description": "",
+  "devDependencies": {
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.4.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.0",
+    "formidable": "^1.0.17",
+    "gm": "^1.22.0",
+    "mongodb": "^2.2.4"
+  },
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
